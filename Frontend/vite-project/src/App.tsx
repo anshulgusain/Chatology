@@ -6,6 +6,7 @@ function App() {
 
   const [messages,setMessages]=useState(["hi there","hello"])
   const wsRef=useRef();
+  const inputRef=useRef();
 
 
 
@@ -36,10 +37,10 @@ ws.onopen=()=>{
         </div>)}
      </div>
      <div className='w-full bg-white flex '>
-      <input id='message' className='flex-1 p-4' ></input>
+      <input ref={inputRef} className='flex-1 p-4' ></input>
       <button onClick={()=>{
       
-        const message=document.getElementById("message")?.value
+        const message=inputRef.current?.value
         wsRef.current.send(
           JSON.stringify({
             type:"chat",
